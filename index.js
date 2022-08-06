@@ -15,6 +15,10 @@ const USER_AGENT =
 const items = [];
 
 app.get("/", (req, res) => {
+  res.json("Hello Steam API XD");
+});
+
+app.get("/steamdb", (req, res) => {
   async function asugan() {
     let browser = await puppeteer.launch({
       headless: true,
