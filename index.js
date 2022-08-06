@@ -78,4 +78,4 @@ app.get("/", (req, res) => {
   asugan();
 });
 
-app.listen(PORT, () => console.log(`${PORT}`));
+app.listen(PORT);
