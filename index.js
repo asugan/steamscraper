@@ -74,7 +74,7 @@ app.get("/steamdb", (req, res) => {
       });
     });
 
-    const atmis = items.slice(0, 10);
+    const atmis = items.slice(0, 20);
 
     res.json(atmis);
     await browser.close();
