@@ -48,7 +48,7 @@ app.get("/steamdb", (req, res) => {
     await page.setJavaScriptEnabled(true);
     await page.setDefaultNavigationTimeout(0);
     await page.goto("https://steamdb.info/patchnotes/", {
-      waitUntil: "networkidle2",
+      waitUntil: "networkidle0",
     });
     const data = await page.evaluate(
       () => document.querySelector("*").outerHTML
@@ -74,7 +74,7 @@ app.get("/steamdb", (req, res) => {
       });
     });
 
-    const atmis = items.slice(0, 60);
+    const atmis = items.slice(0, 10);
 
     res.json(atmis);
     await browser.close();
