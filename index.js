@@ -48,7 +48,7 @@ app.get("/steamdb", (req, res) => {
     await page.setJavaScriptEnabled(true);
     await page.setDefaultNavigationTimeout(0);
     await page.goto("https://steamdb.info/patchnotes/", {
-      waitUntil: "networkidle0",
+      waitUntil: "networkidle2",
     });
     const data = await page.evaluate(
       () => document.querySelector("*").outerHTML
