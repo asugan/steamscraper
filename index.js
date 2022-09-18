@@ -6,6 +6,7 @@ const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const randomUseragent = require("random-useragent");
 
 const app = express();
+app.listen(PORT);
 
 puppeteer.use(StealthPlugin());
 
@@ -17,7 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/steamdb", (req, res) => {
-  async function asugan() {
+  async () => {
     let browser = await puppeteer.launch({
       headless: true,
       executablePath: process.env.CHROME_BIN || null,
@@ -50,6 +51,7 @@ app.get("/steamdb", (req, res) => {
     await page.goto("https://steamdb.info/patchnotes/", {
       waitUntil: "networkidle0",
     });
+    await browser.close();
     const data = await page.evaluate(
       () => document.querySelector("*").outerHTML
     );
@@ -77,9 +79,5 @@ app.get("/steamdb", (req, res) => {
     const atmis = items.slice(0, 20);
 
     res.json(atmis);
-    await browser.close();
-  }
-  asugan();
+  };
 });
-
-app.listen(PORT);
