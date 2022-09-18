@@ -10,16 +10,13 @@ app.listen(PORT);
 
 puppeteer.use(StealthPlugin());
 
-const USER_AGENT =
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36";
-
 app.get("/", (req, res) => {
   res.json("Hello Steam API XD");
 });
 
 app.get("/steamdb", async (req, res) => {
   let browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     executablePath: process.env.CHROME_BIN || null,
     args: [
       "--enable-features=NetworkService",
